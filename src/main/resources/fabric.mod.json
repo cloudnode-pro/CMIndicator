@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "cm_indicator",
+	"version": "${version}",
+	"name": "CMIndicator",
+	"description": "",
+	"authors": [
+		"km127pl",
+		"cloudnode"
+	],
+	"contact": {
+		"email": "km127pl@cloudnode.pro"
+	},
+	"license": "LGPL-3.0",
+	"icon": "assets/cm_indicator/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"pro.cloudnode.smp.indicator.CMIndicator"
+		],
+		"main": [
+			"pro.cloudnode.smp.indicator.server.CMIndicatorServer"
+		]
+	},
+	"mixins": [
+		"cm_indicator.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"fabric": "*",
+		"minecraft": "${minecraft_version}"
+	}
+}
