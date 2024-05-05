@@ -15,6 +15,6 @@ public class CMIndicatorServer implements ModInitializer
 	{
 		LogManager.getLogManager()
 				.getLogger("CMIndicator")
-				.info("You should not run this mod on a server.");
+				.severe("You should not run this mod on a server.");
 	}
 }
