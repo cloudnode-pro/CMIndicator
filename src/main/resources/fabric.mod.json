@@ -18,7 +18,7 @@
 		"client": [
 			"pro.cloudnode.smp.indicator.CMIndicator"
 		],
-		"main": [
+		"server": [
 			"pro.cloudnode.smp.indicator.server.CMIndicatorServer"
 		]
 	},

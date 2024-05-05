@@ -30,7 +30,7 @@ public class Predicate
 	 */
 	public Predicate(@NotNull String pattern, @NotNull Chat chat)
 	{
-		this.pattern = Pattern.compile(pattern);
+		this.pattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
 		this.chat = chat;
 	}
 

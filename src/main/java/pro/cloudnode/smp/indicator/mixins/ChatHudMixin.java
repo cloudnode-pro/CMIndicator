@@ -19,7 +19,7 @@ public class ChatHudMixin
 	public void onMessage(Text message, MessageIndicator indicator, CallbackInfo ci)
 	{
 		Optional<Predicate> optionalPredicate = Predicate.match(message.getString());
-		if (!optionalPredicate.isPresent()) return;
+		if (optionalPredicate.isEmpty()) return;
 
 		Predicate predicate = optionalPredicate.get();
 		ChatManager.getInstance().apply(predicate);

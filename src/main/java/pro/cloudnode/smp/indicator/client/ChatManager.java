@@ -31,8 +31,7 @@ public class ChatManager
 	 */
 	public void apply(Predicate predicate)
 	{
+		System.out.println("Applying chat settings from predicate: " + predicate.chat.toString());
 		this.chat = predicate.chat;
 	}
-
-
 }
