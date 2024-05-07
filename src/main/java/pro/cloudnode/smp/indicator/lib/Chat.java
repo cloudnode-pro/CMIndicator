@@ -13,14 +13,17 @@ public enum Chat
 
 	/**
 	 * Enum for chat types
+	 *
 	 * @param color - accent color of the chat (#RGBA
 	 */
-	Chat(@NotNull int color) {
+	Chat(@NotNull int color)
+	{
 		this.color = color;
 	}
 
 	/**
 	 * Get the color of the chat
+	 *
 	 * @return the color of the chat
 	 */
 	public int getColor()

@@ -10,13 +10,13 @@ import java.util.regex.Pattern;
 
 public class Predicate
 {
-	private final @NotNull Pattern pattern;
 	public final @NotNull Chat chat;
-
+	private final @NotNull Pattern pattern;
 	public @NotNull String recipient;
 
 	/**
 	 * Constructor for Predicate
+	 *
 	 * @param pattern - the pattern to match
 	 * @param chat    - the chat type associated with this predicate
 	 */
@@ -28,6 +28,7 @@ public class Predicate
 
 	/**
 	 * Constructor for Predicate
+	 *
 	 * @param pattern - the pattern to match
 	 * @param chat    - the chat type associated with this predicate
 	 */
@@ -35,6 +36,25 @@ public class Predicate
 	{
 		this.pattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
 		this.chat = chat;
+	}
+
+	/**
+	 * Match a string against a list of predicates
+	 *
+	 * @param string - the string to match
+	 * @return the matched predicate
+	 * @see pro.cloudnode.smp.indicator.CMIndicator#PREDICATES
+	 */
+	public static Optional<Predicate> match(String string)
+	{
+		for (Predicate predicate : CMIndicator.PREDICATES) {
+			if (predicate.test(string)) {
+				return Optional.of(predicate.with(
+						predicate.recipient(string)
+				));
+			}
+		}
+		return Optional.empty();
 	}
 
 	public boolean test(@NotNull String string)
@@ -50,31 +70,10 @@ public class Predicate
 	public String recipient(@NotNull String string)
 	{
 		Matcher matcher = pattern.matcher(string);
-		if (matcher.find() && matcher.groupCount() > 0)
-		{
+		if (matcher.find() && matcher.groupCount() > 0) {
 			return matcher.group(1);
 		}
 		return "";
-	}
-
-	/**
-	 * Match a string against a list of predicates
-	 * @param string - the string to match
-	 * @return the matched predicate
-	 * @see pro.cloudnode.smp.indicator.CMIndicator#PREDICATES
-	 */
-	public static Optional<Predicate> match(String string)
-	{
-		for (Predicate predicate : CMIndicator.PREDICATES)
-		{
-			if (predicate.test(string))
-			{
-				return Optional.of(predicate.with(
-						predicate.recipient(string)
-				));
-			}
-		}
-		return Optional.empty();
 	}
 
 	public Predicate with(@NotNull String recipient)

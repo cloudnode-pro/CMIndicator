@@ -26,18 +26,22 @@ public class ChatUI
 
 	/**
 	 * Get the width of the format() text
-	 * @see this.format()
+	 *
 	 * @return the width in px
+	 * @see this.format()
 	 */
-	public int getWidth() {
+	public int getWidth()
+	{
 		return MinecraftClient.getInstance().textRenderer.getWidth(format()) + 12;
 	}
 
 	/**
 	 * Draw the border and badge on the chat
-	 * @param screen    the chat screen to draw on
+	 *
+	 * @param screen the chat screen to draw on
 	 */
-	public void draw(@NotNull ChatScreen screen) {
+	public void draw(@NotNull ChatScreen screen)
+	{
 		int width = screen.width;
 		int height = screen.height;
 
@@ -46,7 +50,7 @@ public class ChatUI
 
 		if (!ChatManager.getInstance().showBadge) return;
 
-		context.fill(1, height-28, getWidth(), height - 15, chat.getColor());
+		context.fill(1, height - 28, getWidth(), height - 15, chat.getColor());
 		context.drawText(MinecraftClient.getInstance().textRenderer, Text.of(format()), 6, height - 25, 0xFFFFFFFF, true);
 	}
 }
