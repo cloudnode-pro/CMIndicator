@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import pro.cloudnode.smp.indicator.client.ChatManager;
+import pro.cloudnode.smp.indicator.client.ui.ChatUI;
 import pro.cloudnode.smp.indicator.lib.Predicate;
 
 import java.util.Optional;
@@ -23,5 +24,6 @@ public class ChatHudMixin
 
 		Predicate predicate = optionalPredicate.get();
 		ChatManager.getInstance().apply(predicate);
+
 	}
 }

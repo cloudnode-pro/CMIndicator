@@ -5,12 +5,15 @@ import org.jetbrains.annotations.NotNull;
 import pro.cloudnode.smp.indicator.CMIndicator;
 
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Predicate
 {
 	private final @NotNull Pattern pattern;
 	public final @NotNull Chat chat;
+
+	public @NotNull String recipient;
 
 	/**
 	 * Constructor for Predicate
@@ -44,6 +47,16 @@ public class Predicate
 		return pattern.matcher(text.getString()).matches();
 	}
 
+	public String recipient(@NotNull String string)
+	{
+		Matcher matcher = pattern.matcher(string);
+		if (matcher.find() && matcher.groupCount() > 0)
+		{
+			return matcher.group(1);
+		}
+		return "";
+	}
+
 	/**
 	 * Match a string against a list of predicates
 	 * @param string - the string to match
@@ -56,9 +69,17 @@ public class Predicate
 		{
 			if (predicate.test(string))
 			{
-				return Optional.of(predicate);
+				return Optional.of(predicate.with(
+						predicate.recipient(string)
+				));
 			}
 		}
 		return Optional.empty();
+	}
+
+	public Predicate with(@NotNull String recipient)
+	{
+		this.recipient = recipient;
+		return this;
 	}
 }

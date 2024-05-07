@@ -27,4 +27,9 @@ public enum Chat
 	{
 		return color;
 	}
+
+	public boolean borderless()
+	{
+		return this == Chat.Public;
+	}
 }

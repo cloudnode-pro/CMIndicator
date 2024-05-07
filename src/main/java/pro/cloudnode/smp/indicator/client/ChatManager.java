@@ -9,6 +9,8 @@ public class ChatManager
 	private static @NotNull ChatManager instance = new ChatManager();
 
 	public @NotNull Chat chat;
+	public @NotNull String channel;
+	public @NotNull boolean showBadge = true;
 
 	/**
 	 * Get the ChatManager instance
@@ -23,6 +25,7 @@ public class ChatManager
 	{
 		// the default chat type is public
 		this.chat = Chat.Public;
+		this.channel = "Public";
 	}
 
 	/**
@@ -31,7 +34,7 @@ public class ChatManager
 	 */
 	public void apply(Predicate predicate)
 	{
-		System.out.println("Applying chat settings from predicate: " + predicate.chat.toString());
 		this.chat = predicate.chat;
+		this.channel = predicate.recipient;
 	}
 }

@@ -2,6 +2,7 @@ package pro.cloudnode.smp.indicator;
 
 import net.fabricmc.api.ClientModInitializer;
 import org.jetbrains.annotations.NotNull;
+import pro.cloudnode.smp.indicator.client.ChatManager;
 import pro.cloudnode.smp.indicator.lib.Predicate;
 import pro.cloudnode.smp.indicator.predicates.OfflinePredicate;
 import pro.cloudnode.smp.indicator.predicates.PrivateChatPredicate;
@@ -24,5 +25,7 @@ public class CMIndicator implements ClientModInitializer
 	 * Runs the mod initializer on the client environment.
 	 */
 	@Override
-	public void onInitializeClient() {}
+	public void onInitializeClient() {
+		ChatManager.getInstance();
+	}
 }
