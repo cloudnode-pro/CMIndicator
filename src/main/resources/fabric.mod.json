@@ -26,7 +26,6 @@
 		"cm_indicator.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=${loader_version}",
 		"fabric": "*",
 		"minecraft": "${minecraft_version}",
 		"cloth-config": ">=11.1.0"

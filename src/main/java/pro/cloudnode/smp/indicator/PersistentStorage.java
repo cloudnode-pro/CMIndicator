@@ -3,6 +3,7 @@ package pro.cloudnode.smp.indicator;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class PersistentStorage
 {
@@ -20,7 +21,7 @@ public class PersistentStorage
 		if (!Exists(path)) return null;
 		File file = new File(path);
 		try {
-			return FileUtils.readFileToString(file);
+			return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
