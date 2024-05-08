@@ -17,7 +17,8 @@ public class ChatScreenMixin
 	@Inject(at = @At("HEAD"), method = "render", locals = LocalCapture.CAPTURE_FAILHARD)
 	private void render(@NotNull DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo info)
 	{
-		new ChatUI(context, ChatManager.getInstance().chat).draw((ChatScreen) (Object) this);
+		ChatManager.getInstance().createIfNotExists();
+		new ChatUI(context, ChatManager.getInstance().chat()).draw((ChatScreen) (Object) this);
 	}
 
 }

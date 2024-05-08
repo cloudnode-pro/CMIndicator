@@ -3,6 +3,7 @@ package pro.cloudnode.smp.indicator.lib;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import pro.cloudnode.smp.indicator.CMIndicator;
+import pro.cloudnode.smp.indicator.client.ChatState;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -12,7 +13,7 @@ public class Predicate
 {
 	public final @NotNull Chat chat;
 	private final @NotNull Pattern pattern;
-	public @NotNull String recipient;
+	public @NotNull String channel;
 
 	/**
 	 * Constructor for Predicate
@@ -76,9 +77,18 @@ public class Predicate
 		return "";
 	}
 
+	/**
+	 * Get the predicate data as a chat state
+	 * @return  the chat state
+	 */
+	public ChatState state()
+	{
+		return new ChatState(this.chat, this.channel);
+	}
+
 	public Predicate with(@NotNull String recipient)
 	{
-		this.recipient = recipient;
+		this.channel = recipient;
 		return this;
 	}
 }

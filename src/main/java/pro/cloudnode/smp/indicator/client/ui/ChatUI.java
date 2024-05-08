@@ -21,7 +21,7 @@ public class ChatUI
 
 	public String format()
 	{
-		return ChatManager.getInstance().channel;
+		return ChatManager.getInstance().channel();
 	}
 
 	/**

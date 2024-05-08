@@ -7,7 +7,8 @@
 	],
 	"client": [
 		"ChatHudMixin",
-		"ChatScreenMixin"
+		"ChatScreenMixin",
+		"ConnectScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

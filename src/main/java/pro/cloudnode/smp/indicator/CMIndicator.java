@@ -1,6 +1,8 @@
 package pro.cloudnode.smp.indicator;
 
+import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import org.jetbrains.annotations.NotNull;
 import pro.cloudnode.smp.indicator.client.ChatManager;
 import pro.cloudnode.smp.indicator.lib.Predicate;
@@ -8,6 +10,8 @@ import pro.cloudnode.smp.indicator.predicates.OfflinePredicate;
 import pro.cloudnode.smp.indicator.predicates.PrivateChatPredicate;
 import pro.cloudnode.smp.indicator.predicates.PublicChatPredicate;
 import pro.cloudnode.smp.indicator.predicates.TeamChatPredicate;
+
+import java.net.InetSocketAddress;
 
 /**
  * Client initializer
@@ -21,15 +25,14 @@ public class CMIndicator implements ClientModInitializer
 			new PrivateChatPredicate()
 	};
 
+	public static final GsonBuilder gsonBuilder = new GsonBuilder();
+
 	/**
 	 * Runs the mod initializer on the client environment.
 	 */
 	@Override
 	public void onInitializeClient()
 	{
-		ChatManager.setInstance(
-				PersistentStorage.getInstance()
-						.Load(ChatManager.Path, ChatManager.class)
-		);
+		ChatManager.getInstance();
 	}
 }
