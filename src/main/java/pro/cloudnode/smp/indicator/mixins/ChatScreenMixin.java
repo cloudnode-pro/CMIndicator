@@ -17,12 +17,14 @@ public class ChatScreenMixin
 {
 
 	@Inject(at = @At("HEAD"), method = "keyPressed")
-	public void onKeyPress(CallbackInfoReturnable<Boolean> cir) {
+	public void onKeyPress(CallbackInfoReturnable<Boolean> cir)
+	{
 		ChatManager.getInstance().showBadge = false;
 	}
 
 	@Inject(at = @At("HEAD"), method = "init")
-	private void onChatInit(CallbackInfo ci) {
+	private void onChatInit(CallbackInfo ci)
+	{
 		ChatManager.getInstance().showBadge = true;
 	}
 

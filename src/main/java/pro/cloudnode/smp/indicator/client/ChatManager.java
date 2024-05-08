@@ -14,9 +14,8 @@ import java.util.HashMap;
 
 public class ChatManager
 {
-	private static @NotNull ChatManager instance;
-
 	public static String Path = FabricLoader.getInstance().getConfigDir() + "/cmindicator.json";
+	private static @NotNull ChatManager instance;
 	public @NotNull boolean showBadge = true;
 
 	public @NotNull HashMap<String, ChatState> state;
@@ -28,8 +27,7 @@ public class ChatManager
 		this.state = new HashMap<>();
 
 		// try load
-		if (PersistentStorage.Exists(Path))
-		{
+		if (PersistentStorage.Exists(Path)) {
 			this.fromJSON(PersistentStorage.Load(Path));
 		}
 	}
@@ -60,6 +58,7 @@ public class ChatManager
 
 	/**
 	 * Get the state channel
+	 *
 	 * @return
 	 */
 	public String channel()
@@ -90,8 +89,9 @@ public class ChatManager
 
 	/**
 	 * Gets the state as a JSON string
+	 *
+	 * @return the state as a json string
 	 * @implNote uses gson#toJson
-	 * @return  the state as a json string
 	 */
 	public String toJSON()
 	{
@@ -101,11 +101,14 @@ public class ChatManager
 
 	/**
 	 * Sets the state from a JSON string
+	 *
 	 * @implNote uses gson#fromJson
 	 */
 	public void fromJSON(String json)
 	{
 		Gson gson = CMIndicator.gsonBuilder.create();
-		this.state = gson.fromJson(json, new TypeToken<HashMap<String, ChatState>>(){}.getType());
+		this.state = gson.fromJson(json, new TypeToken<HashMap<String, ChatState>>()
+		{
+		}.getType());
 	}
 }

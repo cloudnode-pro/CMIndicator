@@ -2,7 +2,9 @@ package pro.cloudnode.smp.indicator;
 
 import org.apache.commons.io.FileUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class PersistentStorage

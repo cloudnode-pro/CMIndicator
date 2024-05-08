@@ -79,7 +79,8 @@ public class Predicate
 
 	/**
 	 * Get the predicate data as a chat state
-	 * @return  the chat state
+	 *
+	 * @return the chat state
 	 */
 	public ChatState state()
 	{
