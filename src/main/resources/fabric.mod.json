@@ -3,7 +3,7 @@
 	"id": "cm_indicator",
 	"version": "${version}",
 	"name": "CMIndicator",
-	"description": "description goes here blah blah",
+	"description": "A mod that shows your current CloudnodeMSG channel.",
 	"authors": [
 		"km127pl",
 		"cloudnode"
