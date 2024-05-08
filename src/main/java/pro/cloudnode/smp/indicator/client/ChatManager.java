@@ -12,6 +12,8 @@ public class ChatManager implements Serializable
 {
 	private static @NotNull ChatManager instance = new ChatManager();
 
+	public static String Path = FabricLoader.getInstance().getConfigDir() + "/chat.ser";
+
 	public @NotNull Chat chat;
 	public @NotNull String channel;
 	public @NotNull boolean showBadge = true;
@@ -48,6 +50,6 @@ public class ChatManager implements Serializable
 		this.chat = predicate.chat;
 		this.channel = predicate.recipient;
 
-		PersistentStorage.getInstance().Save(this, String.valueOf(FabricLoader.getInstance().getConfigDir()) + "/chat.ser");
+		PersistentStorage.getInstance().Save(this, Path);
 	}
 }

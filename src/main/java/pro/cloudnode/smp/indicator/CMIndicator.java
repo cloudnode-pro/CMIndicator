@@ -27,6 +27,9 @@ public class CMIndicator implements ClientModInitializer
 	@Override
 	public void onInitializeClient()
 	{
-		ChatManager.getInstance();
+		ChatManager.setInstance(
+				PersistentStorage.getInstance()
+						.Load(ChatManager.Path, ChatManager.class)
+		);
 	}
 }
