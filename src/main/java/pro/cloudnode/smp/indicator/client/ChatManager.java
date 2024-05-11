@@ -14,9 +14,9 @@ import java.util.HashMap;
 
 public class ChatManager
 {
-	public static String Path = FabricLoader.getInstance().getConfigDir() + "/cmindicator.json";
-	private static @NotNull ChatManager instance;
-	public @NotNull boolean showBadge = true;
+	public final static String Path = FabricLoader.getInstance().getConfigDir() + "/cmindicator.json";
+	private static ChatManager instance;
+	public boolean showBadge = true;
 
 	public @NotNull HashMap<String, ChatState> state;
 	public @NotNull String currentServer = "localhost";
@@ -53,17 +53,17 @@ public class ChatManager
 	 */
 	public Chat chat()
 	{
-		return this.state.get(currentServer()).chat;
+		return this.state.get(currentServer()).chat();
 	}
 
 	/**
 	 * Get the state channel
 	 *
-	 * @return
+	 * @return the channel as a string
 	 */
 	public String channel()
 	{
-		return this.state.get(currentServer()).channel;
+		return this.state.get(currentServer()).channel();
 	}
 
 	public void createIfNotExists()

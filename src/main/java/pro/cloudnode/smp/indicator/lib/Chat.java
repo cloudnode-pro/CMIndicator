@@ -1,7 +1,5 @@
 package pro.cloudnode.smp.indicator.lib;
 
-import org.jetbrains.annotations.NotNull;
-
 public enum Chat
 {
 	Private(0xFF3B82F6),
@@ -16,7 +14,7 @@ public enum Chat
 	 *
 	 * @param color - accent color of the chat (#RGBA
 	 */
-	Chat(@NotNull int color)
+	Chat(int color)
 	{
 		this.color = color;
 	}
