@@ -10,10 +10,10 @@ import pro.cloudnode.smp.indicator.lib.Chat;
 
 public class ChatUI
 {
-	private DrawContext context;
-	private Chat chat;
+	private final @NotNull DrawContext context;
+	private final @NotNull Chat chat;
 
-	public ChatUI(DrawContext context, Chat chat)
+	public ChatUI(@NotNull DrawContext context, @NotNull Chat chat)
 	{
 		this.context = context;
 		this.chat = chat;
