@@ -22,7 +22,7 @@ public class ChatHudMixin
 		if (optionalPredicate.isEmpty()) return;
 
 		Predicate predicate = optionalPredicate.get();
-		ChatManager.getInstance().apply(predicate);
+		ChatManager.getInstance().apply(message, predicate);
 
 	}
 }

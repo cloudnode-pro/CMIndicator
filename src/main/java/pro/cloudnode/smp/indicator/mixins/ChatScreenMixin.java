@@ -32,7 +32,7 @@ public class ChatScreenMixin
 	private void render(@NotNull DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo info)
 	{
 		ChatManager.getInstance().createIfNotExists();
-		new ChatUI(context, ChatManager.getInstance().chat()).draw((ChatScreen) (Object) this);
+		new ChatUI(context, ChatManager.getInstance().currentState()).draw((ChatScreen) (Object) this);
 	}
 
 }

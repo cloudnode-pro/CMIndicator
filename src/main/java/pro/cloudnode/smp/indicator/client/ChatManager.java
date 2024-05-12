@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import org.jetbrains.annotations.NotNull;
 import pro.cloudnode.smp.indicator.CMIndicator;
 import pro.cloudnode.smp.indicator.PersistentStorage;
@@ -23,7 +25,6 @@ public class ChatManager
 
 	private ChatManager()
 	{
-		// the default chat type is public
 		this.state = new HashMap<>();
 
 		// try load
@@ -41,6 +42,15 @@ public class ChatManager
 	{
 		if (instance == null) instance = new ChatManager();
 		return instance;
+	}
+
+	/**
+	 * Get the state in the current server
+	 * @return a state object
+	 */
+	public ChatState currentState()
+	{
+		return this.state.get(currentServer());
 	}
 
 	public @NotNull String currentServer()
@@ -71,7 +81,12 @@ public class ChatManager
 		if (MinecraftClient.getInstance().player == null) return;
 		if (this.state.containsKey(currentServer())) return;
 
-		this.state.put(currentServer(), new ChatState(Chat.Public, "Public"));
+		// the default chat type is public
+		this.state.put(currentServer(), new ChatState(
+				Chat.Public,
+				"Public",
+				Chat.Public.getColor()
+		));
 	}
 
 	/**
@@ -79,11 +94,27 @@ public class ChatManager
 	 *
 	 * @param predicate the predicate to apply from
 	 */
-	public void apply(Predicate predicate)
+	public void apply(Text message, Predicate predicate)
 	{
-		this.state.put(currentServer(), predicate.state());
+		predicate.apply(message);
+	}
 
-		System.out.println(this.toJSON());
+	/**
+	 * Apply chat settings from a state
+	 *
+	 * @param state the state to apply
+	 */
+	public void apply(ChatState state)
+	{
+		this.state.put(currentServer(), state);
+		this.save();
+	}
+
+	/**
+	 * Saves to disk
+	 */
+	public void save()
+	{
 		PersistentStorage.Save(this.toJSON(), Path);
 	}
 
@@ -107,8 +138,6 @@ public class ChatManager
 	public void fromJSON(String json)
 	{
 		Gson gson = CMIndicator.gsonBuilder.create();
-		this.state = gson.fromJson(json, new TypeToken<HashMap<String, ChatState>>()
-		{
-		}.getType());
+		this.state = gson.fromJson(json, new TypeToken<HashMap<String, ChatState>>() {}.getType());
 	}
 }

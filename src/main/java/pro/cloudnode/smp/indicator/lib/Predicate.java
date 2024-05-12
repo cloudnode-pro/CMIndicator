@@ -1,7 +1,11 @@
 package pro.cloudnode.smp.indicator.lib;
 
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import org.jetbrains.annotations.NotNull;
 import pro.cloudnode.smp.indicator.CMIndicator;
+import pro.cloudnode.smp.indicator.PersistentStorage;
+import pro.cloudnode.smp.indicator.client.ChatManager;
 import pro.cloudnode.smp.indicator.client.ChatState;
 
 import java.util.Optional;
@@ -13,6 +17,8 @@ public class Predicate
 	public final @NotNull Chat chat;
 	private final @NotNull Pattern pattern;
 	public @NotNull String channel;
+
+	public int color;
 
 	/**
 	 * Constructor for Predicate
@@ -67,7 +73,11 @@ public class Predicate
 	 */
 	public ChatState state()
 	{
-		return new ChatState(this.chat, this.channel);
+		return new ChatState(
+				this.chat,
+				this.channel,
+				(this.chat == Chat.Team) ? this.color : chat.getColor()
+		);
 	}
 
 	public Predicate with(@NotNull String recipient)
@@ -75,4 +85,10 @@ public class Predicate
 		this.channel = recipient;
 		return this;
 	}
+
+	public void apply(Text message)
+	{
+		ChatManager.getInstance().state.put(ChatManager.getInstance().currentServer(), this.state());
+		ChatManager.getInstance().save();
+	};
 }

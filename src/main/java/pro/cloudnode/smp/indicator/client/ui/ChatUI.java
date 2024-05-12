@@ -6,17 +6,18 @@ import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import pro.cloudnode.smp.indicator.client.ChatManager;
+import pro.cloudnode.smp.indicator.client.ChatState;
 import pro.cloudnode.smp.indicator.lib.Chat;
 
 public class ChatUI
 {
 	private final @NotNull DrawContext context;
-	private final @NotNull Chat chat;
+	private final @NotNull ChatState state;
 
-	public ChatUI(@NotNull DrawContext context, @NotNull Chat chat)
+	public ChatUI(@NotNull DrawContext context, @NotNull ChatState state)
 	{
 		this.context = context;
-		this.chat = chat;
+		this.state = state;
 	}
 
 	public String format()
@@ -45,12 +46,12 @@ public class ChatUI
 		int width = screen.width;
 		int height = screen.height;
 
-		if (chat.borderless()) return;
-		context.drawBorder(1, height - 15, width - 2, 14, chat.getColor());
+		if (state.chat().borderless()) return;
+		context.drawBorder(1, height - 15, width - 2, 14, state.color());
 
 		if (!ChatManager.getInstance().showBadge) return;
 
-		context.fill(1, height - 28, getWidth(), height - 15, chat.getColor());
+		context.fill(1, height - 28, getWidth(), height - 15, state.color());
 		context.drawText(MinecraftClient.getInstance().textRenderer, Text.of(format()), 6, height - 25, 0xFFFFFFFF, true);
 	}
 }

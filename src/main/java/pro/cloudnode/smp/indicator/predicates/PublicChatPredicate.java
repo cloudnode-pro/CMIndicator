@@ -1,5 +1,6 @@
 package pro.cloudnode.smp.indicator.predicates;
 
+import net.minecraft.text.Text;
 import pro.cloudnode.smp.indicator.lib.Chat;
 import pro.cloudnode.smp.indicator.lib.Predicate;
 
